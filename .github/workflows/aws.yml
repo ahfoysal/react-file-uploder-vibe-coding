@@ -1,0 +1,57 @@
+name: React Frontend CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # Step 3: Install dependencies and build locally (optional)
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      # Step 4: Deploy to AWS EC2
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            # Load NVM and Node
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+            # Navigate to frontend folder (adjust path)
+            cd ~/react-file-uploder-vibe-coding || exit 1
+
+            # Pull latest changes
+            git pull origin main
+
+            # Install dependencies
+            npm install
+
+            # Build React frontend
+            npm run build
+
+            # Start or restart frontend using PM2
+            pm2 start "npx serve -s dist --listen tcp://127.0.0.1:3000" --name react-frontend --update-env
+            pm2 save
