@@ -1,6 +1,6 @@
-import { SingleImageUpload } from '@/components/SingleImageUpload';
-import { MultipleImageUpload } from '@/components/MultipleImageUpload';
-import { ImageIcon } from 'lucide-react';
+import { SingleImageUpload } from "@/components/SingleImageUpload";
+import { MultipleImageUpload } from "@/components/MultipleImageUpload";
+import { ImageIcon, Upload } from "lucide-react";
 
 const Index = () => {
   return (
@@ -13,10 +13,11 @@ const Index = () => {
             </div>
           </div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            Image Upload Studio
+            Cloud & Local Image Hub
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Upload your images seamlessly with our modern, intuitive interface. Choose between single or multiple file uploads.
+            Upload your images seamlessly with our modern, intuitive interface.
+            Choose between single or multiple file uploads.
           </p>
         </div>
 
