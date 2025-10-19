@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Upload, X, Check } from 'lucide-react';
+import { Upload, X, Check, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
@@ -194,8 +194,28 @@ export const MultipleImageUpload = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {uploadedImages.map((url, index) => (
               <div key={index} className="space-y-2">
-                <img src={url} alt={`Uploaded ${index + 1}`} className="w-full h-32 object-cover rounded-lg shadow-md" />
-                <p className="text-xs text-muted-foreground break-all">{url}</p>
+                <div className="relative group">
+                  <img src={url} alt={`Uploaded ${index + 1}`} className="w-full h-32 object-cover rounded-lg shadow-md" />
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center"
+                  >
+                    <div className="bg-white/90 p-2 rounded-full shadow-lg">
+                      <ExternalLink className="w-5 h-5 text-primary" />
+                    </div>
+                  </a>
+                </div>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-xs text-primary hover:text-accent transition-colors break-all"
+                >
+                  <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                  <span className="truncate">{url}</span>
+                </a>
               </div>
             ))}
           </div>

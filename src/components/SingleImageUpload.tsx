@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Upload, X, Check } from 'lucide-react';
+import { Upload, X, Check, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
@@ -158,11 +158,34 @@ export const SingleImageUpload = () => {
 
       {uploadedImage && (
         <div className="space-y-3 p-4 bg-secondary/50 rounded-lg">
-          <div className="flex items-center gap-2 text-sm font-medium text-primary">
-            <Check className="w-4 h-4" />
-            Upload Successful
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm font-medium text-primary">
+              <Check className="w-4 h-4" />
+              Upload Successful
+            </div>
+            <a
+              href={uploadedImage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-sm text-primary hover:text-accent transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Open
+            </a>
           </div>
-          <img src={uploadedImage} alt="Uploaded" className="w-full rounded-lg shadow-md" />
+          <div className="relative group">
+            <img src={uploadedImage} alt="Uploaded" className="w-full rounded-lg shadow-md" />
+            <a
+              href={uploadedImage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center"
+            >
+              <div className="bg-white/90 p-3 rounded-full shadow-lg">
+                <ExternalLink className="w-6 h-6 text-primary" />
+              </div>
+            </a>
+          </div>
           <p className="text-xs text-muted-foreground break-all">{uploadedImage}</p>
         </div>
       )}
