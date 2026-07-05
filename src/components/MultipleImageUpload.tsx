@@ -3,8 +3,7 @@ import { Upload, X, Check, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-
-const API_BASE_URL = 'https://api.foysal.softvenceomega.com';
+import { UPLOAD_API_BASE_URL } from '@/lib/upload-config';
 
 export const MultipleImageUpload = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -71,7 +70,7 @@ export const MultipleImageUpload = () => {
     });
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/aws-uploads`, {
+      const response = await fetch(`${UPLOAD_API_BASE_URL}/api/aws-uploads`, {
         method: 'POST',
         body: formData,
       });
@@ -113,9 +112,9 @@ export const MultipleImageUpload = () => {
     <Card className="p-6 space-y-6">
       <div>
         <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
-          Multiple Images Upload
+          Batch Image Upload
         </h2>
-        <p className="text-muted-foreground">Upload multiple images to AWS S3</p>
+        <p className="text-muted-foreground">Upload a gallery batch and review every hosted result</p>
       </div>
 
       <div

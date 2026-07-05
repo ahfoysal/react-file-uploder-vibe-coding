@@ -1,6 +1,6 @@
 import { SingleImageUpload } from "@/components/SingleImageUpload";
 import { MultipleImageUpload } from "@/components/MultipleImageUpload";
-import { ImageIcon, Upload } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 
 const Index = () => {
   return (
@@ -13,11 +13,11 @@ const Index = () => {
             </div>
           </div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            Cloud & Local Image Hub
+            ImageDrop Studio
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Upload your images seamlessly with our modern, intuitive interface.
-            Choose between single or multiple file uploads.
+            A focused workspace for testing single-image and batch upload flows
+            with local previews, validation, and hosted result links.
           </p>
         </div>
 
@@ -27,7 +27,7 @@ const Index = () => {
         </div>
 
         <div className="mt-12 text-center text-sm text-muted-foreground">
-          <p>Built with React • Powered by modern web technologies</p>
+          <p>Built with React, TypeScript, Tailwind CSS, and shadcn/ui</p>
         </div>
       </div>
     </div>

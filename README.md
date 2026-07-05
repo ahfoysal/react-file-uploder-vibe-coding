@@ -1,73 +1,56 @@
-# Welcome to your Lovable project
+# ImageDrop Studio
 
-## Project info
+ImageDrop Studio is a React upload workspace for testing single-image and
+multi-image upload flows. It gives users drag-and-drop selection, local image
+previews, upload progress states, success toasts, and links to hosted image
+URLs returned by the upload API.
 
-**URL**: https://lovable.dev/projects/23352b92-4680-4f71-bc54-dc4bd0145b1d
+## Features
 
-## How can I edit this code?
+- Single image upload flow for avatar, profile, or cover-image style uploads.
+- Multi-image upload flow for gallery or product-image batches.
+- Drag-and-drop and file-picker input support.
+- Local previews before upload.
+- Uploaded image preview and direct hosted URL links after success.
+- Configurable API base URL through Vite environment variables.
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- Vite
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/23352b92-4680-4f71-bc54-dc4bd0145b1d) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Getting Started
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The app expects an upload API with these routes:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `POST /api/image` for a single file in the `file` form field. The response
+  should include `{ "filePath": "/path-or-url" }`.
+- `POST /api/aws-uploads` for multiple files in the `files` form field. The
+  response should be an array of hosted image URLs.
 
-**Use GitHub Codespaces**
+## Configuration
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Create a local `.env` file if you need to point the app at another API:
 
-## What technologies are used for this project?
+```sh
+VITE_UPLOAD_API_URL=https://api.example.com
+```
 
-This project is built with:
+If the variable is not set, the app falls back to the existing hosted demo API.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Scripts
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/23352b92-4680-4f71-bc54-dc4bd0145b1d) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```sh
+npm run dev
+npm run build
+npm run lint
+npm run preview
+```

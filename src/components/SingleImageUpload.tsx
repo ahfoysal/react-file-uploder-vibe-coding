@@ -3,8 +3,7 @@ import { Upload, X, Check, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-
-const API_BASE_URL = 'https://api.foysal.softvenceomega.com';
+import { UPLOAD_API_BASE_URL } from '@/lib/upload-config';
 
 export const SingleImageUpload = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -59,7 +58,7 @@ export const SingleImageUpload = () => {
     formData.append('file', file);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/image`, {
+      const response = await fetch(`${UPLOAD_API_BASE_URL}/api/image`, {
         method: 'POST',
         body: formData,
       });
@@ -67,7 +66,7 @@ export const SingleImageUpload = () => {
       if (!response.ok) throw new Error('Upload failed');
 
       const data = await response.json();
-      setUploadedImage(`${API_BASE_URL}${data.filePath}`);
+      setUploadedImage(`${UPLOAD_API_BASE_URL}${data.filePath}`);
       toast({
         title: 'Success!',
         description: 'Image uploaded successfully',
@@ -98,7 +97,7 @@ export const SingleImageUpload = () => {
         <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
           Single Image Upload
         </h2>
-        <p className="text-muted-foreground">Upload a single image to the server</p>
+        <p className="text-muted-foreground">Upload one image and copy its hosted URL</p>
       </div>
 
       <div
